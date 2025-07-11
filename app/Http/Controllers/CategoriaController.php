@@ -62,6 +62,11 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'nombre' => 'required|min:3|max:255',
+            'descripcion' => 'required|min:3|max:255',
+            
+        ]);
         $categoria = categoria::find($id);
         $categoria->update($request->all());
         return redirect()->route('categoria.index')->with('success','Registro Actualizo Correctamente');

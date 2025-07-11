@@ -28,8 +28,12 @@ class MarcaController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        marca::create($request->all());
+    {$request->validate([
+        'nombre' => 'required|min:3|max:255',
+        'descripcion' => 'required|min:3|max:255',
+    ]);
+     
+    marca::create($request->all());
         return redirect()->route('marca.index')->with('success','Registro Creado Correctamente');
     }
 
@@ -55,6 +59,10 @@ class MarcaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+        'nombre' => 'required|min:3|max:255',
+        'descripcion' => 'required|min:3|max:255',
+     ]);
         marca::find($id)->update($request->all());
         return redirect()->route('marca.index')->with('success','Registro Actualizo Correctamente');
     }

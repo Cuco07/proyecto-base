@@ -3,14 +3,20 @@
 @section('title', 'PROYECTO BASE')
 
 @section('content_header')
+
 <div class="row">
-    <div class="col-12 text-center">
-        <h1>
+    <div class="col-md-4">
+        <a href="{{ route('factura.index') }}" class="btn btn-indigo rounded-pill px-4 mb-3 mt-4 ml-5">
+            <i class="fas fa-arrow-left"></i> Volver </a>
+    </div>
+    <div class="col-md-8">
+        <h1 class="ml-5">
             <img src="../vendor\adminlte\dist\img/DORAPAN.png" alt="Logo"
                 style="height: 90px; vertical-align: middle; margin-right: 10px; width: 90px;">
-            CREAR FACTURA
+            FACTURAS
         </h1>
     </div>
+
 </div>
 @stop
 
@@ -18,21 +24,18 @@
 
 <div class="row">
     <div class="col-md-12">
-        <a href="{{ route('factura.create') }}" data-bs-toggle='tooltip' title='Crear Factura'
-            class="btn btn-primary mb-2" title="Crear Factura">
-            <i class="fas fa-plus-circle"></i>
-        </a>
-        <div class="card card-indigo mt-4">
-            <div class="card-header text-center">
-                <div class="card-title w-100">
-                    <h5 class="m-0">
-                        <i class="fas fa-file-invoice-dollar mr-2"></i> CREAR FACTURA
-                    </h5>
+        <div class="card card-indigo ">
+
+            <div class="card-indigo">
+                <div class="card-header text-center">
+                    <div class="card-title w-100">
+                        <h5 class="m-0">
+                            <i class="fas fa-list-alt"></i> NUEVA FACTURA
+                        </h5>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
-                <a href="{{ route('factura.index') }}" class="btn btn-secondary rounded-pill px-4 mb-3">
-                    <i class="fas fa-arrow-left"></i> Volver </a>
 
                 <form action="{{route('factura.store')}}" method="POST">
 
@@ -51,21 +54,31 @@
                         @endforeach
                     </select>
 
-                    <label for="fecha" class="form-label">Fedcha</label>
-                    <input type="date" name="fecha" id="fecha" class="form-control">
+                    <div class="mb-3">
+                        <label for="fechacreacion" class="form-label">Fecha de Creación</label>
+                        <input type="date" name="fechacreacion" id="fechacreacion" class="form-control @error('fechacreacion') is-invalid
+                        @enderror" placeholder=" fechacreacion" value="{{old('fechacreacion')}}">
+                        @error('fechacreacion')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
 
-                    <label for="idmodopago" class="form-label">Modo de Pago</label>
-                    <select name="idmodopago" id="idmodopago" class="form-control" required>
-                        <option value="">Seleccione un modo de pago</option>
-                        @foreach ($idmodopagos as $modopago)
-                            <option value="{{ $modopago->id }}" {{ old('idmodopago', $modopago->idmodopago) == $modopago->id ? 'selected' : '' }}>
-                                {{ $modopago->nombre }}
-                            </option>
-                        @endforeach
-                    </select>
+                    <div class="mb-3">
+                        <label for="idmodopago" class="form-label"> Modo de Pago</label>
+                        <select name="idmodopago" id="idmodopago" class="form-control">
+                            <option value="">Seleccione un modo de pago</option>
+                            @foreach ($idmodopagos as $modopago)
+                                <option value="{{ $modopago->id }}" {{ old('idmodopago', $modopago->idmodopago) == $modopago->id ? 'selected' : '' }}>
+                                    {{ $modopago->nombre }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
 
+                    
                     <label for="subtotal" class="form-label">Sub Total</label>
                     <input type="decimal" name="subtotal" id="subtotal" class="form-control">
+
 
                     <label for="impuestos" class="form-label">Impuestos</label>
                     <input type="decimal" name=impuestos id="impuestos" class="form-control">
@@ -74,7 +87,7 @@
                     <input type="decimal" name='total' id="total" class="form-control">
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success rounded-pill px-4 mt-4">
+                        <button type="submit" class="btn btn-indigo rounded-pill px-4 mt-4">
                             <i class="fas fa-save"></i> Guardar
                         </button>
                     </div>
@@ -101,6 +114,18 @@
 @stop
 
 @section('css')
+<style>
+    .btn-indigo {
+        background-color: #6610f2;
+        color: white;
+        border: none;
+    }
+
+    .btn-indigo:hover {
+        background-color: #520dc2;
+        color: white;
+    }
+</style>
 <style>
     .main-sidebar {
         background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');

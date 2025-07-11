@@ -4,10 +4,11 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-12 text-center">
-        <h1>
-            <img src="../vendor\adminlte\dist\img/DORAPAN.png" alt="Logo"
-                style="height: 90px; vertical-align: middle; margin-right: 10px; width: 90px;">
+    <div class="col-12  text-center">
+
+        <h1><img src="../../vendor/adminlte/dist/img/DORAPAN.png" alt="Logo"
+                style="height: 100px; vertical-align: middle; margin-right: 10px; width: 100px;">
+
             GESTION DE MARCAS
         </h1>
     </div>
@@ -15,26 +16,27 @@
 @stop
 
 @section('content')
-
-
 <div class="row">
     <div class="col-md-12">
-        <a href="{{ route('marca.create') }}" data-bs-toggle='tooltip' title='Crear Marca' class="btn btn-primary mb-2"
-            title="Crear Marca">
-            <i class="fas fa-plus-circle"></i>
-        </a>
-        <div class="card card-primary mt-4">
+
+        <div class="card card-primary">
             <div class="card-header text-center">
-    <div class="card-title w-100">
-        <h5 class="m-0">
-            <i class="fas fa-tags mr-2"></i> MARCAS
-        </h5>
-    </div>
-</div>
+                <div class="card-title w-100">
+                    <h5 class="m-0">
+                        <i class="fas fa-tags mr-2"></i> MARCAS
+                    </h5>
+                </div>
+            </div>
+            <div class="col-md-4 mt-3 ">
+                <a href="{{ route('marca.create') }}" data-bs-toggle='tooltip' title='CREAR MARCAS'
+                    class="btn btn-primary mb-2" title="Crear Marca">
+                    <i class="fas fa-plus-circle"> CREAR MARCA</i>
+                </a>
+            </div>
             <div class="card-body">
 
                 <table class="table table-bordered table-striped" id="myTable">
-                   <thead class="bg-primary text-white text-center">
+                    <thead class="bg-primary text-white text-center">
                         <tr>
                             <td>ID</td>
                             <td>NOMBRE DE MARCA</td>
@@ -44,36 +46,34 @@
                     </thead>
                     <tbody>
                         @foreach ($marcas as $marca)
-                                        <tr>
-                                            <td>{{$marca->id}}</td>
-                                            <td>{{$marca->nombre}}</td>
-                                            <td>{{$marca->descripcion}}</td>
+                            <tr>
+                                <td>{{$marca->id}}</td>
+                                <td>{{$marca->nombre}}</td>
+                                <td>{{$marca->descripcion}}</td>
 
-                                            <td>
-                                    <a data-bs-toggle="tooltip" title="Editar"
-                                        href="{{route('marca.edit', $marca->id)}}"
+                                <td>
+                                    <a data-bs-toggle="tooltip" title="Editar" href="{{route('marca.edit', $marca->id)}}"
                                         class="btn btn-outline-warning mt-3"><i class="fas fa-pencil-alt fa-lg"></i></a>
-                                    <form action="{{route('marca.destroy', $marca->id)}}" class="d-inline"
-                                        method="post">
+                                    <form action="{{route('marca.destroy', $marca->id)}}" class="d-inline" method="post">
                                         @csrf
-                                         <button data-bs-toggle="tooltip" title="Eliminar" class="btn btn-outline-danger mt-3"
-                                            type="submit" onclick="confirmarEliminacion(event)"><i class="fas fa-trash-alt fa-lg"></i>
+                                        <button data-bs-toggle="tooltip" title="Eliminar"
+                                            class="btn btn-outline-danger mt-3" type="submit"
+                                            onclick="confirmarEliminacion(event)"><i class="fas fa-trash-alt fa-lg"></i>
                                         </button>
                                     </form>
                                 </td>
-                                        </tr>
+                            </tr>
                         @endforeach
-            </tbody>
-            <div class="card-footer">
-
-                <a href="{{ route('index') }}" class="btn btn-secondary rounded-pill px-4 mb-3">
+                    </tbody>
+                    <div class="card-footer">
+                    </div>
+                </table>
+                <a href="{{ route('index') }}" class="btn btn-primary rounded-pill px-4 mb-3">
                     <i class="fas fa-arrow-left"></i> Volver
                 </a>
             </div>
-            </table>
         </div>
     </div>
-</div>
 </div>
 </div>
 

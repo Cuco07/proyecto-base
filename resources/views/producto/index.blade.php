@@ -4,11 +4,12 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-12 text-center">
-        <h1>
-            <img src="../vendor\adminlte\dist\img/DORAPAN.png" alt="Logo"
-                style="height: 90px; vertical-align: middle; margin-right: 10px; width: 90px;">
-            PRODUCTOS
+    <div class="col-12  text-center">
+
+        <h1><img src="../../vendor/adminlte/dist/img/DORAPAN.png" alt="Logo"
+                style="height: 100px; vertical-align: middle; margin-right: 10px; width: 100px;">
+
+            GESTION DE PRODUCTOS
         </h1>
     </div>
 </div>
@@ -17,20 +18,33 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-12">
-        <a href="{{ route('producto.create') }}" data-bs-toggle='tooltip' title='Crear Producto'
-            class="btn btn-primary mb-2" title="Crear Producto">
-            <i class="fas fa-plus-circle"></i>
-        </a>
-        <div class="card card-primary mt-4">
-             <div class="card-secondary">
+    <div class="col-md-12 offset">
+       
+        <div class="card card-primary">
+              <div class="card-secondary">
                 <div class="card-header text-center">
+
                     <div class="card-title w-100">
+
                         <h5 class="m-0">
-                            <i class="fas fa-box-open mr-2"></i> PRODUCTOS
+                            <i class="fas fa-list-alt"></i> PRODUCTOS
                         </h5>
+
                     </div>
+
                 </div>
+
+              
+                    <div class="col-md-4 mt-3 ">
+                        <a href="{{ route('producto.create') }}" data-bs-toggle='tooltip' title='CREAR PRODUCTO'
+                            class="btn btn-secondary mb-2" title="CREAR PRODUCTO">
+                            <i class="fas fa-plus-circle"> CREAR PRODUCTO</i>
+                        </a>
+                    </div>
+
+                
+                
+
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped" id="myTable">
@@ -77,14 +91,13 @@
                             </tr>
                         @endforeach
                     </tbody>
-                    <div class="card-footer">
-
-                        <a href="{{ route('index') }}" data-bs-toggle='tooltip' title='Volver'
-                            class="btn btn-secondary rounded-pill px-4" title="Volver">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
+                    <div class="card-footer">                      
                     </div>
                 </table>
+                 <a href="{{ route('index') }}" data-bs-toggle='tooltip' title='Volver'
+                            class="btn btn-secondary rounded-pill px-4" title="Volver">
+                            <i class="fas fa-arrow-left"> Volver</i>
+                        </a>
             </div>
         </div>
     </div>

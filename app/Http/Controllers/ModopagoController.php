@@ -63,6 +63,12 @@ class ModopagoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+         $request->validate([
+        'nombre' => 'required|string|max:50',
+        'descripcion' => 'required|string|max:255',
+        'activo' => 'required|boolean',
+    ]);
+
         modopago::find($id)->update($request->all());
         return redirect()->route('modopago.index')->with('success', 'Registro Actualizado Correctamente');
     }

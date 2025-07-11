@@ -4,13 +4,18 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-12 text-center">
-        <h1>
+    <div class="col-md-4">
+        <a href="{{ route('factura.index') }}" class="btn btn-indigo rounded-pill px-4 mb-3 mt-4 ml-5">
+            <i class="fas fa-arrow-left"></i> Volver </a>
+    </div>
+    <div class="col-md-8">
+        <h1 class="ml-5">
             <img src="../../vendor\adminlte\dist\img/DORAPAN.png" alt="Logo"
                 style="height: 90px; vertical-align: middle; margin-right: 10px; width: 90px;">
-            EDITAR FACTURA
+            EDITAR FACTURAS
         </h1>
     </div>
+    
 </div>
 @stop
 
@@ -18,21 +23,17 @@
 
 <div class="row">
     <div class="col-md-12">
-        <a href="{{ route('factura.edit', $factura->id) }}" data-bs-toggle='tooltip' title='Crear Factura'
-            class="btn btn-primary mb-2" title="Editar Factura">
-            <i class="fas fa-plus-circle"></i>
-        </a>
+       
         <div class="card card-indigo mt-4">
             <div class="card-header text-center">
                 <div class="card-title w-100">
                     <h5 class="m-0">
-                        <i class="fas fa-file-invoice-dollar mr-2"></i> CREAR FACTURA
+                        <i class="fas fa-file-invoice-dollar mr-2"></i> EDITAR FACTURA
                     </h5>
                 </div>
             </div>
             <div class="card-body">
-                <a href="{{ route('factura.index') }}" class="btn btn-secondary rounded-pill px-4 mb-3">
-                    <i class="fas fa-arrow-left"></i> Volver </a>
+           
 
                 <form action="{{route('factura.update', $factura->id)}}" method="POST">
 
@@ -77,7 +78,7 @@
                     <input type="decimal" name='total' id="total" class="form-control" value="{{$factura->total}}">
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success rounded-pill px-4 mt-4">
+                        <button type="submit" class="btn btn-indigo rounded-pill px-4 mt-4">
                             <i class="fas fa-save"></i> Guardar
                         </button>
                     </div>
@@ -110,6 +111,18 @@
         background-color: #dfe0e7e0;
         background-repeat: repeat;
         background-size: auto;
+    }
+</style>
+<style>
+    .btn-indigo {
+        background-color: #6610f2;
+        color: white;
+        border: none;
+    }
+
+    .btn-indigo:hover {
+        background-color: #520dc2;
+        color: white;
     }
 </style>
 <style>

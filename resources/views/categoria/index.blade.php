@@ -4,7 +4,7 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-12 text-center">
+    <div class="col-12  text-center">
 
         <h1><img src="../../vendor/adminlte/dist/img/DORAPAN.png" alt="Logo"
                 style="height: 100px; vertical-align: middle; margin-right: 10px; width: 100px;">
@@ -17,20 +17,24 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-12">
-        <a href="{{ route('categoria.create') }}" data-bs-toggle='tooltip' title='CREAR CATEGORIA'
-            class="btn btn-primary mb-2" title="CREAR cATEGORIA">
-            <i class="fas fa-plus-circle"></i>
-        </a>
-        <div class="card card-primary mt-4">
+    <div class="col-md-12 offeset">
+        <div class="card card-primary">
             <div class="card-warning">
                 <div class="card-header text-center">
-                    <div class="card-title w-100">
+                   <div class="card-title w-100">
                         <h5 class="m-0">
-                            <i class="fas fa-list-alt"></i>  CATEGORIAS
+                            <i class="fas fa-list-alt"></i> CATEGORIAS
                         </h5>
                     </div>
                 </div>
+
+              
+                    <div class="col-md-4 mt-3 ">
+                        <a href="{{ route('categoria.create') }}" data-bs-toggle='tooltip' title='CREAR CATEGORIA'
+                            class="btn btn-warning mb-2" title="CREAR cATEGORIA">
+                            <i class="fas fa-plus-circle"> Crear Categoria</i>
+                        </a>
+                    </div>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped" id="myTable">
@@ -55,8 +59,9 @@
                                     <form action="{{route('categoria.destroy', $categoria->id)}}" class="d-inline"
                                         method="post">
                                         @csrf
-                                        <button data-bs-toggle="tooltip" title="eliminar" class="btn btn-outline-danger mt-3"
-                                            type="submit" onclick="confirmarEliminacion(event)"><i class="fas fa-trash-alt fa-lg"></i>
+                                        <button data-bs-toggle="tooltip" title="eliminar"
+                                            class="btn btn-outline-danger mt-3" type="submit"
+                                            onclick="confirmarEliminacion(event)"><i class="fas fa-trash-alt fa-lg"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -64,7 +69,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <a href="{{ route('index') }}" class="btn btn-secondary rounded-pill px-4 mb-3">
+                <a href="{{ route('index') }}" class="btn btn-warning rounded-pill px-4 mb-3">
                     <i class="fas fa-arrow-left"></i> Volver </a>
             </div>
         </div>
@@ -90,13 +95,13 @@
 
 @section('css')
 <style>
-        .main-sidebar {
-            background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');
-            background-color: #e7e6dfe0;
-            background-repeat: repeat;
-            background-size: auto;
-        }
-    </style>
+    .main-sidebar {
+        background-image: url('https://www.transparenttextures.com/patterns/concrete-wall.png');
+        background-color: #e7e6dfe0;
+        background-repeat: repeat;
+        background-size: auto;
+    }
+</style>
 
 <style>
     .sidebar .nav-link {
@@ -107,62 +112,62 @@
 
 
 <style>
-        /* Mantener el color original de los botones en el menú al estar activos o al hacer clic */
+    /* Mantener el color original de los botones en el menú al estar activos o al hacer clic */
 
-        .nav-sidebar .nav-link.btn.active,
-        .nav-sidebar .nav-link.btn:focus,
-        .nav-sidebar .nav-link.btn:active {
-            box-shadow: none !important;
-        }
+    .nav-sidebar .nav-link.btn.active,
+    .nav-sidebar .nav-link.btn:focus,
+    .nav-sidebar .nav-link.btn:active {
+        box-shadow: none !important;
+    }
 
-        .nav-sidebar .nav-link.btn.btn-primary.active,
-        .nav-sidebar .nav-link.btn.btn-primary:focus,
-        .nav-sidebar .nav-link.btn.btn-primary:active {
-            background-color: #007bff !important;
-            color: #fff !important;
-            border-color: #007bff !important;
-        }
+    .nav-sidebar .nav-link.btn.btn-primary.active,
+    .nav-sidebar .nav-link.btn.btn-primary:focus,
+    .nav-sidebar .nav-link.btn.btn-primary:active {
+        background-color: #007bff !important;
+        color: #fff !important;
+        border-color: #007bff !important;
+    }
 
-        .nav-sidebar .nav-link.btn.btn-secondary.active,
-        .nav-sidebar .nav-link.btn.btn-secondary:focus,
-        .nav-sidebar .nav-link.btn.btn-secondary:active {
-            background-color: #6c757d !important;
-            color: #fff !important;
-            border-color: #6c757d !important;
-        }
+    .nav-sidebar .nav-link.btn.btn-secondary.active,
+    .nav-sidebar .nav-link.btn.btn-secondary:focus,
+    .nav-sidebar .nav-link.btn.btn-secondary:active {
+        background-color: #6c757d !important;
+        color: #fff !important;
+        border-color: #6c757d !important;
+    }
 
-        .nav-sidebar .nav-link.btn.btn-warning.active,
-        .nav-sidebar .nav-link.btn.btn-warning:focus,
-        .nav-sidebar .nav-link.btn.btn-warning:active {
-            background-color: #ffc107 !important;
-            color: #212529 !important;
-            border-color: #ffc107 !important;
-        }
+    .nav-sidebar .nav-link.btn.btn-warning.active,
+    .nav-sidebar .nav-link.btn.btn-warning:focus,
+    .nav-sidebar .nav-link.btn.btn-warning:active {
+        background-color: #ffc107 !important;
+        color: #212529 !important;
+        border-color: #ffc107 !important;
+    }
 
-        .nav-sidebar .nav-link.btn.btn-success.active,
-        .nav-sidebar .nav-link.btn.btn-success:focus,
-        .nav-sidebar .nav-link.btn.btn-success:active {
-            background-color: #28a745 !important;
-            color: #fff !important;
-            border-color: #28a745 !important;
-        }
+    .nav-sidebar .nav-link.btn.btn-success.active,
+    .nav-sidebar .nav-link.btn.btn-success:focus,
+    .nav-sidebar .nav-link.btn.btn-success:active {
+        background-color: #28a745 !important;
+        color: #fff !important;
+        border-color: #28a745 !important;
+    }
 
-        .nav-sidebar .nav-link.btn.btn-info.active,
-        .nav-sidebar .nav-link.btn.btn-info:focus,
-        .nav-sidebar .nav-link.btn.btn-info:active {
-            background-color: #17a2b8 !important;
-            color: #fff !important;
-            border-color: #17a2b8 !important;
-        }
+    .nav-sidebar .nav-link.btn.btn-info.active,
+    .nav-sidebar .nav-link.btn.btn-info:focus,
+    .nav-sidebar .nav-link.btn.btn-info:active {
+        background-color: #17a2b8 !important;
+        color: #fff !important;
+        border-color: #17a2b8 !important;
+    }
 
-        .nav-sidebar .nav-link.btn.btn-danger.active,
-        .nav-sidebar .nav-link.btn.btn-danger:focus,
-        .nav-sidebar .nav-link.btn.btn-danger:active {
-            background-color: #dc3545 !important;
-            color: #fff !important;
-            border-color: #dc3545 !important;
-        }
-    </style>
+    .nav-sidebar .nav-link.btn.btn-danger.active,
+    .nav-sidebar .nav-link.btn.btn-danger:focus,
+    .nav-sidebar .nav-link.btn.btn-danger:active {
+        background-color: #dc3545 !important;
+        color: #fff !important;
+        border-color: #dc3545 !important;
+    }
+</style>
 @stop
 
 

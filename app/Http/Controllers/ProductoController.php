@@ -16,7 +16,7 @@ class ProductoController extends Controller
     public function index()
     {
         $productos = producto::all();
-        return view('producto.index',compact('productos'));
+        return view('producto.index', compact('productos'));
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductoController extends Controller
         $categorias = categoria::all();
         $marcas = marca::all();
 
-        return view('producto.crear',compact('categorias','marcas'));
+        return view('producto.crear', compact('categorias', 'marcas'));
     }
 
     /**
@@ -35,8 +35,19 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        producto::create($request->all());
-         return redirect()->route('producto.index')->with('success','Registro Creado Correctamente');
+        $request->validate([
+            'nombre' => 'required|min:3|max:255',
+            'descripcion' => 'required|min:3|max:255',
+            'precio' => 'required|min:3|max:255',
+            'preciocompra' => 'required|min:3|max:255',
+            'stock' => 'required|min:3|max:255',
+            'fechacreacion' => 'required|min:3|max:255',
+            'estado' => 'required|min:3|max:255',
+
+        ]);
+
+        producto::create($request->validated());
+        return redirect()->route('producto.index')->with('success', 'Registro Creado Correctamente');
     }
 
     /**
@@ -55,7 +66,7 @@ class ProductoController extends Controller
         $producto = producto::find($id);
         $categorias = categoria::all();
         $marcas = marca::all();
-        return view('producto.editar', compact('producto','categorias','marcas'));
+        return view('producto.editar', compact('producto', 'categorias', 'marcas'));
     }
 
     /**
@@ -63,8 +74,19 @@ class ProductoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        producto::find($id)->update($request->all());
-        return redirect()->route('producto.index')->with('success','Registro Actualizo Correctamente');
+        $request->validate([
+            'nombre' => 'required|min:3|max:255',
+            'descripcion' => 'required|min:3|max:255',
+            'precio' => 'required|min:3|max:255',
+            'preciocompra' => 'required|min:3|max:255',
+            'stock' => 'required|min:1|max:255',
+            'fechacreacion' => 'required|min:3|max:255',
+            'estado' => 'required|min:3|max:255',
+
+        ]);
+
+        producto::find($id)->update($request->validated());
+        return redirect()->route('producto.index')->with('success', 'Registro Actualizo Correctamente');
     }
 
     /**
@@ -73,6 +95,6 @@ class ProductoController extends Controller
     public function destroy(string $id)
     {
         producto::find($id)->delete();
-        return redirect()->route('producto.index')->with('success','Registro Eliminado Correctamente');
+        return redirect()->route('producto.index')->with('success', 'Registro Eliminado Correctamente');
     }
 }

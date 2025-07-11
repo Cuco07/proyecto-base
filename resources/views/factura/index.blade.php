@@ -4,11 +4,12 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-12 text-center">
-        <h1>
-            <img src="../../vendor\adminlte\dist\img/DORAPAN.png" alt="Logo"
-                style="height: 90px; vertical-align: middle; margin-right: 10px; width: 90px;">
-            FACTURAS
+    <div class="col-12  text-center">
+
+        <h1><img src="../../vendor/adminlte/dist/img/DORAPAN.png" alt="Logo"
+                style="height: 100px; vertical-align: middle; margin-right: 10px; width: 100px;">
+
+            GESTION DE FACTURAS
         </h1>
     </div>
 </div>
@@ -17,21 +18,26 @@
 @section('content')
 
 <div class="row">
-    <div class="col-md-12">
-        <a href="{{ route('factura.create') }}" data-bs-toggle='tooltip' title='Crear Factura'
-            class="btn btn-primary mb-2" title="Crear Factura">
-            <i class="fas fa-plus-circle"></i>
-        </a>
+    <div class="col-md-12 offeset">
+        <div class="card card-indigo ">
 
-        <div class="card card-indigo mt-4">
-            <div class="card-header text-center">
-                <div class="card-title w-100">
-                    <h5 class="m-0">
-                        <i class="fas fa-file-invoice-dollar mr-2"></i> CREAR FACTURA
-                    </h5>
+            <div class="card-indigo">
+                <div class="card-header text-center">
+                    <div class="card-title w-100">
+                        <h5 class="m-0">
+                            <i class="fas fa-file-invoice-dollar mr-2"></i>  FACTURAS
+                        </h5>
+                    </div>
                 </div>
-            </div>
+                <div class="col-md-4 mt-3 ">
+                    <a href="{{ route('factura.create') }}" data-bs-toggle='tooltip' title='Crear Factura'
+                        class="btn btn-indigo mb-2 mt-4" title="Crear Factura">
+                        <i class="fas fa-plus-circle"></i> CREAR FACTURA
+                    </a>
+                </div>
 
+
+            </div>
             <div class="card-body">
 
                 <table class="table table-bordered table-striped" id="myTable">
@@ -86,13 +92,12 @@
                         @endforeach
                     </tbody>
                     <div class="card-footer">
-
-                        <a href="{{ route('index') }}" data-bs-toggle='tooltip' title='Volver'
-                            class="btn btn-secondary rounded-pill px-4" title="Volver">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
                     </div>
                 </table>
+                <a href="{{ route('index') }}" data-bs-toggle='tooltip' title='Volver'
+                    class="btn btn-indigo rounded-pill px-4" title="Volver">
+                    <i class="fas fa-arrow-left">Volver</i>
+                </a>
             </div>
         </div>
     </div>
@@ -186,19 +191,29 @@
         color: #fff !important;
         border-color: #dc3545 !important;
     }
-
-    
 </style>
 <style>
+    .card-indigo .card-header {
+        background-color: #855ed9;
+        color: white;
+    }
 
-.card-indigo .card-header {
-    background-color: #855ed9;
-    color: white;
-}
-.table-indigo {
-    background-color: #9f71e8;
-    color: white;
-}
+    .table-indigo {
+        background-color: #9f71e8;
+        color: white;
+    }
+</style>
+<style>
+    .btn-indigo {
+        background-color: #6610f2;
+        color: white;
+        border: none;
+    }
+
+    .btn-indigo:hover {
+        background-color: #520dc2;
+        color: white;
+    }
 </style>
 
 

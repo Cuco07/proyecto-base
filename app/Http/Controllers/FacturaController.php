@@ -39,8 +39,14 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        
-        Factura::create($request->all());
+        $request->validate([
+        'fecha' => 'required|min:3|max:255',
+        'subtotal' => 'required|min:3|max:255',
+        'impuestos' => 'required|min:3|max:255',
+        'total' => 'required|min:3|max:255',
+    ]);
+
+        Factura::create($request->validat());
 
         return redirect()->route('factura.index')->with('success','Factura Creada Correctamente');
     }
@@ -80,6 +86,12 @@ class FacturaController extends Controller
      */
     public function update(Request $request, string $id)
     {
+           $request->validate([
+        'fecha' => 'required|min:3|max:255',
+        'subtotal' => 'required|min:3|max:255',
+        'impuestos' => 'required|min:3|max:255',
+        'total' => 'required|min:3|max:255',
+    ]);
         factura::find($id)->update($request->all());
         return redirect()->route('factura.index')->with('success', 'Factura Actualizada Correctamente ');
 

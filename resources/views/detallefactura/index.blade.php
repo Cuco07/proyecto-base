@@ -4,10 +4,11 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-12 text-center">
-        <h1>
-            <img src="{{ asset('vendor/adminlte/dist/img/DORAPAN.png') }}" alt="Logo"
-                style="height: 90px; vertical-align: middle; margin-right: 10px; width: 90px;">
+    <div class="col-12  text-center">
+
+        <h1><img src="../../vendor/adminlte/dist/img/DORAPAN.png" alt="Logo"
+                style="height: 100px; vertical-align: middle; margin-right: 10px; width: 100px;">
+
             DETALLE DE FACTURAS
         </h1>
     </div>
@@ -17,18 +18,26 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-       <a href="{{ route('detallefactura.create') }}" data-bs-toggle='tooltip' title='Crear Detalle Factura'
-            class="btn btn-primary mb-2" title="Crear Detalle Factura">
-            <i class="fas fa-plus-circle"></i>
-        </a>
+    
                                                 
         <div class="card card-primary mt-4">
             <div class="card card-dark">
+            <div class="card-dark">
                 <div class="card-header text-center">
-                    <h5 class="card-title m-0 w-100">
-                        <i class="fas fa-clipboard-list"></i> DETALLE FACTURA
-                    </h5>
+                    <div class="card-title w-100">
+                        <h5 class="m-0">
+                            <i class="fas fa-file-invoice-dollar mr-2"></i> DETALLE FACTURAS
+                        </h5>
+                    </div>
                 </div>
+                <div class="col-md-4 mt-3 ">
+                    <a href="{{ route('detallefactura.create') }}" data-bs-toggle='tooltip' title='Crear Factura'
+                        class="btn btn-dark mb-2 mt-4" title="Crear Factura">
+                        <i class="fas fa-plus-circle"></i> CREAR FACTURA
+                    </a>
+                </div>
+
+
             </div>
 
             <div class="card-body">
@@ -72,7 +81,7 @@
             </div>
 
             <div class="card-footer">
-                <a href="{{ route('index') }}" class="btn btn-secondary rounded-pill px-4" data-bs-toggle='tooltip'
+                <a href="{{ route('index') }}" class="btn btn-dark rounded-pill px-4" data-bs-toggle='tooltip'
                     title='Volver'>
                     <i class="fas fa-arrow-left"></i> Volver
                 </a>

@@ -4,10 +4,11 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-12 text-center">
-        <h1>
-            <img src="../vendor\adminlte\dist\img/DORAPAN.png" alt="Logo"
-                style="height: 90px; vertical-align: middle; margin-right: 10px; width: 90px;">
+    <div class="col-12  text-center">
+
+        <h1><img src="../../vendor/adminlte/dist/img/DORAPAN.png" alt="Logo"
+                style="height: 100px; vertical-align: middle; margin-right: 10px; width: 100px;">
+
             MODO DE PAGO
         </h1>
     </div>
@@ -18,19 +19,22 @@
 
 <div class="row">
     <div class="col-md-12">
-        <a href="{{ route('modopago.create') }}" data-bs-toggle='tooltip' title='Modo de Pago'
-            class="btn btn-primary mb-2" title="Crear Modo de Pago">
-            <i class="fas fa-plus-circle"></i>
-        </a>
+       
         <div class="card card-primary mt-4">
             <div class="card-success">
                 <div class="card-header text-center">
                     <div class="card-title w-100">
                         <h5 class="m-0">
-                            <i class="fas fa-credit-card mr-2"></i> MODO DE PAGO
+                            <i class="fas fa-credit-card mr-2"></i> MODOS DE PAGO
                         </h5>
                     </div>
                 </div>
+                <div class="col-md-4 mt-3 ">
+                        <a href="{{ route('modopago.create') }}" data-bs-toggle='tooltip' title='CREAR CATEGORIA'
+                            class="btn btn-success mb-2" title="CREAR cATEGORIA">
+                            <i class="fas fa-plus-circle"> Crear Modo Pago</i>
+                        </a>
+                    </div>
             </div>
             <div class="card-body">
                 <table class="table table-bordered table-striped" id="myTable">
@@ -67,12 +71,11 @@
                     </tbody>
                     <div class="card-footer">
 
-                        <a href="{{ route('index') }}" data-bs-toggle='tooltip' title='Volver'
-                            class="btn btn-secondary rounded-pill px-4" title="Volver">
-                            <i class="fas fa-arrow-left"></i>
-                        </a>
+                       
                     </div>
                 </table>
+                 <a href="{{ route('index') }}" class="btn btn-success rounded-pill px-4 mb-3">
+                    <i class="fas fa-arrow-left"></i> Volver </a>
             </div>
         </div>
     </div>

@@ -4,20 +4,24 @@
 
 @section('content_header')
 <div class="row">
-    <div class="col-12 text-center">
-        <h1>
-            <img src="../../vendor/adminlte/dist/img/DORAPAN.png"  alt="Logo"
+    <div class="col-md-4">
+        <a href="{{ route('producto.index') }}" class="btn btn-secondary rounded-pill px-4 mb-3 mt-4 ml-5">
+            <i class="fas fa-arrow-left"></i> Volver </a>
+    </div>
+    <div class="col-md-8">
+        <h1 class="ml-5">
+            <img src="../../vendor\adminlte\dist\img/DORAPAN.png" alt="Logo"
                 style="height: 90px; vertical-align: middle; margin-right: 10px; width: 90px;">
-            EDITAR PRODUCTO
+            EDITAR PRODUCTOS
         </h1>
     </div>
+    
 </div>
 @stop
 
 
 @section('content')
-<a href="{{ route('producto.index') }}" class="btn btn-secondary rounded-pill px-4 mb-3">
-    <i class="fas fa-arrow-left"></i> Volver </a>
+
 
 <div class="row">
     <div class="col-md-12">
@@ -26,7 +30,7 @@
                 <div class="card-header text-center">
                     <div class="card-title w-100">
                         <h5 class="m-0">
-                            <i class="fas fa-box-open mr-2"></i>  EDITAR PRODUCTOS
+                            <i class="fas fa-box-open mr-2"></i> EDITAR PRODUCTOS
                         </h5>
                     </div>
                 </div>
@@ -36,29 +40,64 @@
                 <form action="{{route('producto.update', $producto->id)}}" method="POST">
 
                     @csrf
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" value="{{$producto->nombre}}" class="form-control">
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" value="{{$producto->nombre}}" class="form-control @error('nombre') is-invalid
+                        @enderror" placeholder="Nombre" value="{{old('nombre')}}">
+                        @error('nombre')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
 
-                    <label for="descripcion" class="form-label">Descripcion</label>
-                    <input type="text" name="descripcion" id="descripcion" value="{{$producto->nombre}}"
-                        class="form-control">
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <input type="text" name="descripcion" id="descripcion" value="{{$producto->descripcion}}" class="form-control @error('descripcion') is-invalid
+                        @enderror" placeholder="Descripcion" value="{{old('descripcion')}}">
+                        @error('descripcion')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
 
-                    <label for="precio" class="form-label">Precio</label>
-                    <input type="number" name="precio" id="precio" value="{{$producto->precio}}" class="form-control">
+                    <div class="mb-3">
+                        <label for="precio" class="form-label">Precio</label>
+                        <input type="number" name="precio" id="precio" value="{{$producto->precio}}" class="form-control @error('precio') is-invalid
+                        @enderror" placeholder="Precio" value="{{old('precio')}}">
+                        @error('precio')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
 
+                    <div class="mb-3">
                     <label for="stock" class="form-label">Stock</label>
-                    <input type="number" name=stock id="stock" value="{{$producto->stock}}" class="form-control">
+                    <input type="number" name=stock id="stock" value="{{$producto->stock}}" class="form-control  @error('stock') is-invalid
+                        @enderror" placeholder="Stock" value="{{old('stock')}}">
+                        @error('stock')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
 
-                    <label for="fechaCreacion">Fecha De Creacion</label>
-                    <input type="date" name='fechaCreacion' id="fechaCreacion" value="{{$producto->fechaCreacion}}"
-                        class="form-control">
+                    <div class="mb-3">
+                    <label for="fechacreacion">Fecha De Creacion</label>
+                    <input type="date" name='fechacreacion' id="fechacreacion" value="{{$producto->fechacreacion}}"
+                        class="form-control @error('fechacreacion') is-invalid
+                        @enderror" placeholder="fechacreacion" value="{{old('fechacreacion')}}">
+                        @error('fechacreacion')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
+                    </div>
 
+                    <div class="mb-3">
                     <label for="estado" class="form-label">Estado</label>
-                    <select name="estado" id="estado" class="form-control">
+                    <select name="estado" id="estado" class="form-control @error('estado') is-invalid
+                        @enderror" placeholder="estado" value="{{old('estado')}}">
+                        @error('estado')
+                            <div class="invalid-feedback">{{$message}}</div>
+                        @enderror
                         <option value="1" @if ($producto->estado == 1) selected @endif>Activo</option>
 
                         <option value="0" @if ($producto->estado == 0) selected @endif>Inactivo</option>
-                    </select>
+                     </select>
+                    </div>
 
                     <label for="idmarca" class="form-label">Marca</label>
 
@@ -80,11 +119,11 @@
                         @endforeach
                     </select>
 
-                        <div class="text-center">
-                          <button type="submit" class="btn btn-success rounded-pill px-4 mt-4">
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-secondary rounded-pill px-4 mt-4">
                             <i class="fas fa-save"></i> Guardar
-                          </button>
-                        </div>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>

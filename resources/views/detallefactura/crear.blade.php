@@ -80,7 +80,7 @@
 
                      
                       <div class="text-center">
-                        <button type="submit" class="btn btn-success rounded-pill px-4 mt-4">
+                        <button type="submit" class="btn btn-dark rounded-pill px-4 mt-4">
                             <i class="fas fa-save"></i> Guardar
                         </button>
                     </div>

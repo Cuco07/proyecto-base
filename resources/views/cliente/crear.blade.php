@@ -19,8 +19,8 @@
     <div class="col-md-9 offset-1">
 
         <a href="{{ route('index') }}" data-bs-toggle='tooltip' title='Volver'
-            class="btn btn-secondary rounded-pill px-4" title="Volver">
-            <i class="fas fa-arrow-left"></i>
+            class="btn btn-danger rounded-pill px-4" title=" Volver">
+            <i class="fas fa-arrow-left"> Volver</i>
         </a>
 
         <div class="card card-success mt-4">
@@ -38,7 +38,7 @@
 
                 <form action="{{route('cliente.store')}}" method="POST">
                     @csrf
-
+                    
                     <label for="nombre" class="form-label">NOMBRE</label>
                     <input type="text" name="nombre" id="nombre"
                         class="form-control  @error('nombre')is-invalid @enderror" placeholder="Nombre">
@@ -46,6 +46,7 @@
                     @error('nombre')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
+                    
 
                     <label for="apellido" class="form-label">APELLIDO</label>
                     <input type="text" name="apellido" id="apellido"
@@ -107,7 +108,7 @@
                         </option>
                     </select>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success rounded-pill px-4 mt-4">
+                        <button type="submit" class="btn btn-danger rounded-pill px-4 mt-4">
                             <i class="fas fa-save"></i> Guardar
                         </button>
                     </div>
