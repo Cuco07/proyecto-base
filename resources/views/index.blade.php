@@ -75,7 +75,7 @@
 
     <div class="col-md-3 mb-4">
     <div class="card custom-card card-indigo">
-        <div class="card-body d-flex felx-column align-items-center justify-conten-center">
+        <div class="card-body d-flex felx-column align-items-center justify-content-center">
             <a href="{{ route('factura.index') }}" class="stretched-link text-white text-decoration-none">
                 <i class="fas fa-file-alt fa-2x"></i>
                 <h5 class="m-0">Factura</h5>
