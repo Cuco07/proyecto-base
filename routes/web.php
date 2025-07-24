@@ -16,7 +16,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/',  function (): View{return view('welcome');})->name('welcome');
+Route::get('/',  function (): View{return view('welcome');});
 
 route::get('welcome', [BienvenidaController::class,'welcome'])->name('welcome');
 
