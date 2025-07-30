@@ -93,11 +93,8 @@
 
                     <div class="mb-3">
                         <label for="estado" class="form-label">Estado</label>
-                        <select name="estado" id="estado" class="form-control @error('estado') is-invalid
-                        @enderror" placeholder=" estado" value="{{old('estado')}}">
-                        @error('estado')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
+                        <select name="estado" id="estado" class="form-control" >
+                       
                             <option value="1">Activo</option>
                             <option value="0">Inactivo</option>
                         </select>

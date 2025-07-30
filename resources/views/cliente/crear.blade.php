@@ -38,19 +38,21 @@
 
                 <form action="{{route('cliente.store')}}" method="POST">
                     @csrf
-                    
+
                     <label for="nombre" class="form-label">NOMBRE</label>
                     <input type="text" name="nombre" id="nombre"
-                        class="form-control  @error('nombre')is-invalid @enderror" placeholder="Nombre">
+                        class="form-control  @error('nombre')is-invalid @enderror" placeholder="Nombre"
+                        value="{{old('nombre')}}">
 
                     @error('nombre')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
-                    
+
 
                     <label for="apellido" class="form-label">APELLIDO</label>
                     <input type="text" name="apellido" id="apellido"
-                        class="form-control  @error('apellido')is-invalid @enderror" placeholder="Apellido">
+                        class="form-control  @error('apellido')is-invalid @enderror" placeholder="Apellido"
+                        value="{{old('apellido')}}">
 
                     @error('apellido')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -58,47 +60,45 @@
 
                     <label for="direccion" class="form-label">DIRECCION</label>
                     <input type="text" name="direccion" id="direccion"
-                        class="form-control  @error('direccion')is-invalid @enderror" placeholder="Direccion">
-
+                        class="form-control @error('direccion') is-invalid @enderror" placeholder="Direccion"
+                        value="{{ old('direccion') }}">
                     @error('direccion')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
                     <label for="fechanacimiento" class="form-label">FECHA DE NACIMIENTO</label>
                     <input type="date" name="fechanacimiento" id="fechanacimiento"
-                        class="form-control  @error('fechanacimiento')is-invalid @enderror"
-                        placeholder="Fecha Nacimiento">
-
+                        class="form-control @error('fechanacimiento') is-invalid @enderror"
+                        value="{{ old('fechanacimiento') }}">
                     @error('fechanacimiento')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
                     <label for="telefono" class="form-label">TELEFONO</label>
-                    <input type="tex" name="telefono" id="telefono"
-                        class="form-control  @error('telefono')is-invalid @enderror" placeholder="Telefono">
-
+                    <input type="text" name="telefono" id="telefono"
+                        class="form-control @error('telefono') is-invalid @enderror" placeholder="Telefono"
+                        value="{{ old('telefono') }}">
                     @error('telefono')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
-                    <label for="email" class="form-label">Correo Electronico</label>
-                    <input type="text" name="email" id="amail" class="form-control  @error('email')is-invalid @enderror"
-                        placeholder="Email">
-
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <input type="text" name="email" id="email" class="form-control @error('email') is-invalid @enderror"
+                        placeholder="Email" value="{{ old('email') }}">
                     @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
                     <label for="fecharegistro" class="form-label">FECHA DE REGISTRO</label>
                     <input type="date" name="fecharegistro" id="fecharegistro"
-                        class="form-control  @error('fecharegistro')is-invalid @enderror" placeholder="Fecha Registro">
-
+                        class="form-control @error('fecharegistro') is-invalid @enderror"
+                        value="{{ old('fecharegistro') }}">
                     @error('fecharegistro')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
 
                     <label for="genero" class="form-label">Género</label>
-                    <select class="form-control" id="genero" name="genero" required>
+                    <select class="form-control" id="genero" name="genero" value="{{old('apellido')}}">
                         <option value="">Seleccione género</option>
                         <option value="Masculino" {{ old('genero', $cliente->genero ?? '') == 'Masculino' ? 'selected' : '' }}>
                             Masculino</option>
