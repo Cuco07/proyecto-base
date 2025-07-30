@@ -18,7 +18,7 @@
 <div class="row">
     <div class="col-md-9 offset-1">
 
-        <a href="{{ route('index') }}" data-bs-toggle='tooltip' title='Volver'
+        <a href="{{ route('cliente.index') }}" data-bs-toggle='tooltip' title='Volver'
             class="btn btn-danger rounded-pill px-4" title=" Volver">
             <i class="fas fa-arrow-left"> Volver</i>
         </a>
