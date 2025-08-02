@@ -78,7 +78,14 @@ class ModopagoController extends Controller
      */
     public function destroy(string $id )
     {
-        modopago::find($id)->delete();
-        return redirect()->route('modopago.index')->with('success', 'Registro Eliminado Correctamente');
+         $modopago = modopago::find($id);
+
+    if (!$modopago) {
+        return redirect()->route('modopago.index')->with('error', 'Modo de pago no encontrado.');
+    }
+
+    $modopago->delete();
+
+    return redirect()->route('modopago.index')->with('success', 'Registro eliminado correctamente');
     }
 }

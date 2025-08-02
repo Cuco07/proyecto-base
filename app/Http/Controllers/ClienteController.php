@@ -64,6 +64,15 @@ class ClienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
+         $request->validate([
+            'nombre' => 'required|min:3|max:255',
+            'apellido' => 'required|min:3|max:255',
+            'direccion' => 'required|min:3|max:255',
+            'fechanacimiento' => 'required|min:3|max:255',
+            'telefono' => 'required|min:3|max:255',
+            'email' => 'required|min:3|max:255',
+            'fecharegistro' => 'required|min:3|max:255',
+        ]);
         $cliente = cliente::find($id);
         $cliente->update($request->all());
         return redirect()->route('cliente.index')->with('success','Registro Actualizo Correctamente');
@@ -74,8 +83,18 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        cliente::find($id)->delete();
-        return redirect()->route('cliente.index')->with('success','Registro Eliminado Correctamente');
+        $cliente = Cliente::find($id);
+
+    if (!$cliente) {
+        return redirect()->route('cliente.index')->with('error', 'Cliente no encontrado.');
+    }
+
+    try {
+        $cliente->delete();
+        return redirect()->route('cliente.index')->with('success', 'Cliente eliminado correctamente.');
+    } catch (\Illuminate\Database\QueryException $e) {
+        return redirect()->route('cliente.index')->with('error', 'No se puede eliminar el cliente porque está relacionado con otras entidades.');
+    }
     
     }
 }

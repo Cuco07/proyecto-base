@@ -58,7 +58,7 @@
                                     <a data-bs-toggle="tooltip" title="Editar"
                                         href="{{route('modopago.edit', $modopago->id)}}"
                                         class="btn btn-outline-warning mt-3"><i class="fas fa-pencil-alt fa-lg"></i></a>
-                                    <form action="{{route('detallefactura.destroy', $modopago->id)}}" class="d-inline"
+                                    <form action="{{route('modopago.destroy', $modopago->id)}}" class="d-inline"
                                         method="post">
                                         @csrf
                                         <button data-bs-toggle="tooltip" title="Eliminar" class="btn btn-outline-danger mt-3"

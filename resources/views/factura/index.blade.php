@@ -73,7 +73,7 @@
                                         href="{{route('factura.edit', $factura->id)}}"
                                         class="btn btn-outline-warning mt-3"><i class="fas fa-pencil-alt fa-lg"></i>
                                     </a>
-                                    <form action="{{route('detallefactura.destroy', $factura->id)}}" class="d-inline"
+                                    <form action="{{route('factura.destroy', $factura->id)}}" class="d-inline"
                                         method="post">
                                         @csrf
                                         <button data-bs-toggle="tooltip" title="Eliminar"

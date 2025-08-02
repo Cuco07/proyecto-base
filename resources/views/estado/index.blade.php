@@ -56,7 +56,7 @@
                                 <td>
                                     <a data-bs-toggle="tooltip" title="Editar" href="{{route('estado.edit', $estado->id)}}"
                                         class="btn btn-outline-warning mt-3"><i class="fas fa-pencil-alt fa-lg"></i></a>
-                                    <form action="{{route('detallefactura.destroy', $estado->id)}}" class="d-inline"
+                                    <form action="{{route('estado.destroy', $estado->id)}}" class="d-inline"
                                         method="post">
                                         @csrf
                                         <button data-bs-toggle="tooltip" title="Eliminar"
