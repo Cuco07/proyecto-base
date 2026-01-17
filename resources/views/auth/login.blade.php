@@ -1,41 +1,47 @@
-@extends('adminlte::page')
+<x-guest-layout>
+    <!-- Session Status -->
+    <x-auth-session-status class="mb-4" :status="session('status')" />
 
-@section('title', 'Iniciar Sesión')
+    <form method="POST" action="{{ route('login') }}">
+        @csrf
 
-@section('content')
-<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-color: #f4f6f9;">
-    <div class="card shadow-lg p-4" style="width: 400px;">
-        <div class="text-center mb-4">
-            <img src="{{ asset('vendor/adminlte/dist/img/DORAPAN.jpeg') }}" alt="Logo" style="width: 100px; height: 100px;">
-            <h3 class="mt-2 font-weight-bold">DORAPAN</h3>
-            <h5 class="text-muted">Iniciar Sesión</h5>
+        <!-- Email Address -->
+        <div>
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <strong>¡Error!</strong> {{ $errors->first() }}
-            </div>
-        @endif
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Password')" />
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+            <x-text-input id="password" class="block mt-1 w-full"
+                            type="password"
+                            name="password"
+                            required autocomplete="current-password" />
 
-            <div class="form-group">
-                <label for="email">Correo Electrónico</label>
-                <input type="email" name="email" class="form-control" required autofocus placeholder="Correo electrónico">
-            </div>
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
 
-            <div class="form-group mt-3">
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" class="form-control" required placeholder="Contraseña">
-            </div>
+        <!-- Remember Me -->
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+            </label>
+        </div>
 
-            <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary btn-block">
-                    <i class="fas fa-sign-in-alt mr-1"></i> Iniciar Sesión
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-@endsection
+        <div class="flex items-center justify-end mt-4">
+            @if (Route::has('password.request'))
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    {{ __('Forgot your password?') }}
+                </a>
+            @endif
+
+            <x-primary-button class="ms-3">
+                {{ __('Log in') }}
+            </x-primary-button>
+        </div>
+    </form>
+</x-guest-layout>
