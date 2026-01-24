@@ -87,6 +87,10 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+         <div class="form-group mt-3">
+            <input type="text" name="nombre" class="form-control" placeholder="Nombre" required autofocus>
+        </div>
+
         <div class="form-group mt-3">
             <input type="email" name="email" class="form-control" placeholder="Correo" required autofocus>
         </div>

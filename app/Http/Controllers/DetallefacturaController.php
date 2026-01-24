@@ -35,12 +35,37 @@ class DetallefacturaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        detallefactura::create($request->all());
+public function store(Request $request)
+{
+    $producto = Producto::findOrFail($request->idproducto);
 
-        return redirect()->route('detallefactura.index')->with('success','CREADO CORRECTAMENTE');
-    }
+    // 1️⃣ Guardar detalle
+    DetalleFactura::create([
+        'idfactura' => $request->idfactura,
+        'idproducto' => $request->idproducto,
+        'cantidad' => $request->cantidad,
+        'preciounitario' => $producto->precio,
+        'totallinea' => $request->cantidad * $producto->precio,
+    ]);
+
+    // 2️⃣ RECARGAR la factura desde BD
+    $factura = Factura::with('detallefactura')->findOrFail($request->idfactura);
+
+    // 3️⃣ Calcular desde LOS DETALLES REALES
+    $subtotal = $factura->detallefactura->sum('totallinea');
+    $impuestos = $subtotal * 0.19;
+    $total = $subtotal + $impuestos;
+
+    // 4️⃣ Actualizar factura
+    $factura->update([
+        'subtotal' => $subtotal,
+        'impuestos' => $impuestos,
+        'total' => $total,
+    ]);
+
+    return redirect()->route('detallefactura.index')
+        ->with('success', 'Detalle agregado y factura actualizada correctamente');
+}
 
     /**
      * Display the specified resource.

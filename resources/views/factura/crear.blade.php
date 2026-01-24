@@ -55,9 +55,9 @@
                     </select>
 
                     <div class="mb-3">
-                        <label for="fechacreacion" class="form-label">Fecha de Creación</label>
-                        <input type="date" name="fechacreacion" id="fechacreacion" class="form-control @error('fechacreacion') is-invalid
-                        @enderror" placeholder=" fechacreacion" value="{{old('fechacreacion')}}">
+                        <label for="fecha" class="form-label">Fecha de Creación</label>
+                        <input type="date" name="fecha" id="fecha" class="form-control @error('fechacreacion') is-invalid
+                        @enderror" placeholder=" fechacreacion" value="{{old('fecha')}}">
                         @error('fechacreacion')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -68,23 +68,23 @@
                         <select name="idmodopago" id="idmodopago" class="form-control">
                             <option value="">Seleccione un modo de pago</option>
                             @foreach ($idmodopagos as $modopago)
-                                <option value="{{ $modopago->id }}" {{ old('idmodopago', $modopago->idmodopago) == $modopago->id ? 'selected' : '' }}>
-                                    {{ $modopago->nombre }}
-                                </option>
+                                <option value="{{ $modopago->id }}" {{ old('idmodopago') == $modopago->id ? 'selected' : '' }}>
+                                     {{ $modopago->nombre }}
+                               </option>
                             @endforeach
                         </select>
                     </div>
 
                     
-                    <label for="subtotal" class="form-label">Sub Total</label>
-                    <input type="decimal" name="subtotal" id="subtotal" class="form-control">
+                    <label for="subtotal">Sub Total</label>
+                    <input type="number" step="0.01" name="subtotal" id="subtotal" class="form-control" value="{{ old('subtotal') }}">
 
 
-                    <label for="impuestos" class="form-label">Impuestos</label>
-                    <input type="decimal" name=impuestos id="impuestos" class="form-control">
+                    <label for="impuestos">Impuestos</label>
+                    <input type="number" step="0.01" name="impuestos" id="impuestos" class="form-control" value="{{ old('impuestos') }}">
 
                     <label for="total">Total</label>
-                    <input type="decimal" name='total' id="total" class="form-control">
+                    <input type="number" step="0.01" name="total" id="total" class="form-control" value="{{ old('total') }}">
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-indigo rounded-pill px-4 mt-4">

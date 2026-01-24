@@ -34,21 +34,38 @@ class ProductoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'nombre' => 'required|min:3|max:255',
-            'descripcion' => 'required|min:3|max:255',
-            'precio' => 'required|min:3|max:255',
-            'preciocompra' => 'required|min:3|max:255',
-            'stock' => 'required|min:3|max:255',
-            'fechacreacion' => 'required|min:3|max:255',
-            'estado' => 'required|min:3|max:255',
+{
+    $request->validate([
+        'nombre' => 'required|string|min:3|max:255',
+        'descripcion' => 'required|string|min:3|max:255',
 
-        ]);
+        'precio' => 'required|numeric|min:0',
+        'preciocompra' => 'required|numeric|min:0',
+        'stock' => 'required|integer|min:0',
 
-        producto::create($request->validated());
-        return redirect()->route('producto.index')->with('success', 'Registro Creado Correctamente');
-    }
+        'fechacreacion' => 'required|date',
+        'estado' => 'required|in:0,1',
+
+        'idmarca' => 'required|exists:marcas,id',
+        'idcategoria' => 'required|exists:categorias,id',
+    ]);
+
+    Producto::create($request->only([
+        'nombre',
+        'descripcion',
+        'precio',
+        'preciocompra',
+        'stock',
+        'fechacreacion',
+        'estado',
+        'idmarca',
+        'idcategoria',
+    ]));
+
+    return redirect()
+        ->route('producto.index')
+        ->with('success', 'Producto creado correctamente');
+}
 
     /**
      * Display the specified resource.

@@ -31,7 +31,7 @@
               
                     <div class="col-md-4 mt-3 ">
                         <a href="{{ route('categoria.create') }}" data-bs-toggle='tooltip' title='CREAR CATEGORIA'
-                            class="btn btn-warning mb-2" title="CREAR cATEGORIA">
+                            class="btn btn-warning mb-2" title="CREAR CATEGORIA">
                             <i class="fas fa-plus-circle"> Crear Categoria</i>
                         </a>
                     </div>

@@ -24,7 +24,9 @@ class FacturaController extends Controller
     /**
      * Show the form for creating a new resource.
      */
+    
     public function create()
+    
     {
         $clientes = cliente::all();
         $estados = estado::all();
@@ -38,18 +40,33 @@ class FacturaController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-        'fecha' => 'required|min:3|max:255',
-        'subtotal' => 'required|min:3|max:255',
-        'impuestos' => 'required|min:3|max:255',
-        'total' => 'required|min:3|max:255',
+{
+    $request->validate([
+        'idcliente' => 'required|exists:clientes,id',
+        'idestado' => 'required|exists:estados,id',
+        'idmodopago' => 'required|exists:modopagos,id',
+
+        'fecha' => 'required|date',
+
+        'subtotal' => 'required|numeric|min:0',
+        'impuestos' => 'required|numeric|min:0',
+        'total' => 'required|numeric|min:0',
     ]);
 
-        Factura::create($request->validat());
+    Factura::create($request->only([
+        'idcliente',
+        'idestado',
+        'idmodopago',
+        'fecha',
+        'subtotal',
+        'impuestos',
+        'total',
+    ]));
 
-        return redirect()->route('factura.index')->with('success','Factura Creada Correctamente');
-    }
+    return redirect()
+        ->route('factura.index')
+        ->with('success', 'Factura creada correctamente');
+}
 
     
 

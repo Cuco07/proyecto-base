@@ -69,7 +69,8 @@
                     
                     <div class="mb-3">
                         <label for="preciounitario" class="form-label">Precio Unitario</label>
-                        <input type="number" step="0.01" name="preciounitario" id="preciounitario" value="{{ old('preciounitario') }}" class="form-control" required>
+                        <input type="hidden" name="preciounitario" id="preciounitario">
+                        <input type="text" id="precio_mostrar" class="form-control" readonly>
                     </div>
 
                     
@@ -103,21 +104,28 @@
 <script>
     @section('js')
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const cantidadInput = document.getElementById('cantidad');
-        const precioInput = document.getElementById('preciounitario');
-        const totalLineaInput = document.getElementById('totallinea');
+document.addEventListener('DOMContentLoaded', function () {
+    const producto = document.getElementById('idproducto');
+    const cantidad = document.getElementById('cantidad');
+    const precioHidden = document.getElementById('preciounitario');
+    const precioMostrar = document.getElementById('precio_mostrar');
+    const totalLinea = document.getElementById('totallinea');
 
-        function calcularTotalLinea() {
-            const cantidad = parseFloat(cantidadInput.value) || 0;
-            const precio = parseFloat(precioInput.value) || 0;
-            const total = cantidad * precio;
-            totalLineaInput.value = total.toFixed(2);
-        }
+    function calcular() {
+        const precio = parseFloat(precioHidden.value) || 0;
+        const cant = parseFloat(cantidad.value) || 0;
+        totalLinea.value = (precio * cant).toFixed(2);
+    }
 
-        cantidadInput.addEventListener('input', calcularTotalLinea);
-        precioInput.addEventListener('input', calcularTotalLinea);
+    producto.addEventListener('change', function () {
+        const precio = this.options[this.selectedIndex].dataset.precio;
+        precioHidden.value = precio;
+        precioMostrar.value = precio;
+        calcular();
     });
+
+    cantidad.addEventListener('input', calcular);
+});
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
