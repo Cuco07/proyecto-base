@@ -11,6 +11,7 @@ use App\Http\Controllers\FacturaPdfController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ModopagoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\ImpuestoController;
 use App\Models\factura;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Route;
@@ -157,7 +158,9 @@ Route::get('/dashboard', function () {
     return view('dashboard'); // solo si está autenticado
 })->middleware('auth');
 
+//Ruta impuestos
 
+Route::resource('impuestos', ImpuestoController::class);
 
 Route::get('/dashboard', function () {
     return view('index'); // o tu vista principal

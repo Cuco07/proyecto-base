@@ -21,20 +21,15 @@
     <div class="col-md-12 offset">
        
         <div class="card card-primary">
-              <div class="card-secondary">
+            <div class="card-secondary">
                 <div class="card-header text-center">
 
                     <div class="card-title w-100">
 
-                        <h5 class="m-0">
-                            <i class="fas fa-list-alt"></i> PRODUCTOS
-                        </h5>
-
+                        <h5 class="m-0"><i class="fas fa-list-alt"></i> PRODUCTOS</h5>
                     </div>
-
                 </div>
 
-              
                     <div class="col-md-4 mt-3 ">
                         <a href="{{ route('producto.create') }}" data-bs-toggle='tooltip' title='CREAR PRODUCTO'
                             class="btn btn-secondary mb-2" title="CREAR PRODUCTO">
@@ -42,57 +37,71 @@
                         </a>
                     </div>
 
-                
-                
-
-            </div>
-            <div class="card-body">
-                <table class="table table-bordered table-striped" id="myTable">
+                    </div>
+                         <div class="card-body">
+                           <table class="table table-bordered table-striped" id="myTable">
                     <thead class="table-secondary text-center">
-                        <tr>
-                            <td>Id</td>
+                          <tr>
+                            <td>ID</td>
                             <td>Nombre</td>
                             <td>Precio</td>
-                            <td>Precio De Compra</td>
-                            <td>Stock</td>
-                            <td>Fecha de Creacion</td>
+                            <td>Iva</td>
+                            <td>Precio Base</td>
+                            <td>Impuesto</td>
+                            <td>Total Unidades</td>
+                            
                             <td>Estado</td>
                             <td>Acciones</td>
-                        </tr>
+
+                          </tr>
                     </thead>
+
                     <tbody>
-                        @foreach ($productos as $producto)
-                            <tr>
-                                <td>{{$producto->id}}</td>
-                                <td>{{$producto->nombre}}</td>
-                                <td>{{$producto->precio}}</td>
-                                <td>{{$producto->preciocompra}}</td>
-                                <td>{{$producto->stock}}</td>
-                                <td>{{$producto->fechacreacion}}</td>
-                                <td>{{$producto->estado}}
-                                    @if ($producto->estado == 1)
-                                        Activo
-                                    @else
-                                        Inactivo
-                                    @endif
-                                </td>
-                                <td>
-                                    <a data-bs-toggle="tooltip" title="Editar"
-                                        href="{{route('producto.edit', $producto->id)}}"
-                                        class="btn btn-outline-warning mt-3"><i class="fas fa-pencil-alt fa-lg"></i></a>
-                                    <form action="{{route('producto.destroy', $producto->id)}}" class="d-inline"
-                                        method="post">
-                                        @csrf
-                                         <button data-bs-toggle="tooltip" title="Eliminar" class="btn btn-outline-danger mt-3"
-                                            type="submit" onclick="confirmarEliminacion(event)"><i class="fas fa-trash-alt fa-lg"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                    <div class="card-footer">                      
-                    </div>
+                         @foreach ($productos as $producto)
+                        <tr>
+                          <td>{{ $producto->id }}</td>
+                          <td>{{ $producto->nombre }}</td>
+
+                            {{-- Precio sin IVA --}}
+                          <td>${{ number_format($producto->precio, 2) }}</td>
+
+                            {{-- IVA calculado --}}
+                          <td>${{ number_format($producto->valor_iva, 2) }}</td>
+           
+                            {{-- Precio final --}}
+                          <td>${{ number_format($producto->precio_con_iva, 2) }}</td>
+            
+                            {{-- Impuesto --}}
+                          <td>{{ $producto->impuesto->nombre ?? 'Sin impuesto' }}</td>
+
+                          <td>{{ $producto->stock }}</td>
+
+                          <td>
+                           <span class="badge {{ $producto->estado ? 'bg-success' : 'bg-danger' }}">
+                            {{ $producto->estado ? 'Activo' : 'Inactivo' }}
+                           </span>
+                          </td>
+ 
+                          <td class="text-center">
+                             <a data-bs-toggle="tooltip" title="Editar" href="{{route('producto.edit', $producto->id)}}"
+                               class="btn btn-outline-warning mt-3"><i class="fas fa-pencil-alt fa-lg"></i></a>
+
+                             <form action="{{ route('producto.destroy', $producto) }}" method="POST" class="d-inline">
+                                @csrf
+        
+                               <button type="submit"
+                                    class="btn btn-outline-danger mt-3" type="submit"
+                                     onclick="confirmarEliminacion(event)">
+                                    <i class="fas fa-trash-alt fa-lg"></i>
+                               </button>
+                             </form>
+                           </td>
+                         </tr>
+              @endforeach
+             </tbody>
+
+             <div class="card-footer">                      
+              </div>
                 </table>
                  <a href="{{ route('index') }}" data-bs-toggle='tooltip' title='Volver'
                             class="btn btn-secondary rounded-pill px-4" title="Volver">
@@ -127,12 +136,14 @@
         background-repeat: repeat;
         background-size: auto;
     }
+    
 </style>
 <style>
     .sidebar .nav-link {
         text-align: left !important;
     }
 </style>
+
 
 <style>
         /* Mantener el color original de los botones en el menú al estar activos o al hacer clic */

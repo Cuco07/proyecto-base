@@ -4,12 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class estado extends Model
+class Estado extends Model
 {
-    protected $fillable = ['descripcion']; 
+    protected $fillable = ['descripcion', 'activo'];
 
-      public function factura(){
+    protected $casts = [
+        'activo' => 'boolean',
+    ];
 
-        return $this->hashMany(factura::class);
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class);
     }
 }

@@ -68,8 +68,15 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="preciocompra" class="form-label">Precio de Compra</label>
+                       <input type="number" name="preciocompra" id="preciocompra"
+                           value="{{ old('preciocompra', $producto->preciocompra) }}"
+                              class="form-control">
+                    </div>
+
+                    <div class="mb-3">
                     <label for="stock" class="form-label">Stock</label>
-                    <input type="number" name=stock id="stock" value="{{$producto->stock}}" class="form-control  @error('stock') is-invalid
+                    <input type="number" name='stock' id="stock" value="{{$producto->stock}}" class="form-control  @error('stock') is-invalid
                         @enderror" placeholder="Stock" value="{{old('stock')}}">
                         @error('stock')
                             <div class="invalid-feedback">{{$message}}</div>
@@ -80,7 +87,7 @@
                     <label for="fechacreacion">Fecha De Creacion</label>
                     <input type="date" name='fechacreacion' id="fechacreacion" value="{{$producto->fechacreacion}}"
                         class="form-control @error('fechacreacion') is-invalid
-                        @enderror" placeholder="fechacreacion" value="{{old('fechacreacion')}}">
+                        @enderror" placeholder="fechacreacion"value="{{ old('fechacreacion', \Carbon\Carbon::parse($producto->fechacreacion)->format('Y-m-d')) }}">
                         @error('fechacreacion')
                             <div class="invalid-feedback">{{$message}}</div>
                         @enderror

@@ -47,7 +47,7 @@
 </head>
 <body>
 
-    <h1>Factura De Venta{{ $factura->id }} </h1>
+    <h1>Factura de Venta #{{ $factura->id }} </h1>
 
     <table style="width: 100%; border: none;">
     <tr>

@@ -36,6 +36,14 @@
                 <form action="{{route('estado.store')}}" method="POST">
                     @csrf
 
+                    <div class="form-group">
+                       <label>Estado</label>
+                         <select name="activo" class="form-control">
+                          <option value="1">Activo</option>
+                          <option value="0">Inactivo</option>
+                         </select>
+                    </div>
+                    
                     <label for="descripcion" class="form-label">Descripcion</label>
                     <input type="text" name="descripcion" id="descripcion"
                         class="form-control  @error('descripcion')is-invalid @enderror" placeholder="Descripción">

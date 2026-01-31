@@ -9,19 +9,56 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
-    protected $fillable = ['nombre','descripcion','precio','preciocompra','stock','fechacreacion','estado','idcategoria','idmarca'];
+    protected $fillable = [
+        'nombre',
+        'descripcion',
+        'precio',        // precio FINAL con IVA
+        'preciocompra',  // precio BASE
+        'stock',
+        'fechacreacion',
+        'estado',
+        'idcategoria',
+        'idmarca',
+        'impuesto_id'
+    ];
 
-    public function marca(){
-        return $this->belongsTo(marca::class,'idmarca');
+    // ================= RELACIONES =================
 
+    public function marca()
+    {
+        return $this->belongsTo(Marca::class, 'idmarca');
     }
-    public function categoria(){
-        return $this->belongsTo(categoria::class,'idcategoria');
-        
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'idcategoria');
     }
 
-    public function detallefactura(){
-        return $this->hasMany(detallefactura::class);
+    public function detallefactura()
+    {
+        return $this->hasMany(DetalleFactura::class);
     }
 
+    public function impuesto()
+    {
+        return $this->belongsTo(Impuesto::class, 'impuesto_id');
+    }
+
+    // ================= ATRIBUTOS CALCULADOS =================
+
+    // Valor del IVA (calculado desde precio base)
+    public function getValorIvaAttribute()
+    {
+        if (!$this->impuesto) {
+            return 0;
+        }
+
+        return $this->preciocompra * ($this->impuesto->porcentaje / 100);
+    }
+
+    // Subtotal (precio sin IVA)
+    public function getSubtotalAttribute()
+    {
+        return $this->preciocompra;
+    }
 }
