@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estado extends Model
 {
-    protected $fillable = ['descripcion', 'activo'];
+    protected $fillable = ['descripcion', 'estado'];
 
     protected $casts = [
         'activo' => 'boolean',

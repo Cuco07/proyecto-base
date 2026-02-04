@@ -24,7 +24,6 @@
     <div class="col-md-9 offset-1">
 
         <div class="card card-success mt-4">
-
             <div class="card-header text-center">
                 <h5 class="m-0"><i class="fas fa-flag"></i> ESTADOS</h5>
             </div>
@@ -33,7 +32,7 @@
 
                 <form action="{{ route('estado.update', $estado->id) }}" method="POST">
                     @csrf
-                    @method('PUT')
+                    <!-- NO usar @method('PUT') porque tu ruta es POST -->
 
                     <!-- DESCRIPCION -->
                     <div class="form-group">
@@ -49,7 +48,6 @@
                     <!-- ACTIVO -->
                     <div class="form-group">
                         <label>Estado</label><br>
-
                         <input type="checkbox" name="activo" value="1"
                             {{ $estado->activo ? 'checked' : '' }}>
                         Activo
@@ -60,7 +58,6 @@
                             <i class="fas fa-save"></i> Actualizar
                         </button>
                     </div>
-
                 </form>
 
             </div>

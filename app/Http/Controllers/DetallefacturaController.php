@@ -39,7 +39,7 @@ public function store(Request $request)
 {
     $producto = Producto::findOrFail($request->idproducto);
 
-    // 1️⃣ Guardar detalle
+    // 1️ Guardar detalle
     DetalleFactura::create([
         'idfactura' => $request->idfactura,
         'idproducto' => $request->idproducto,
@@ -48,15 +48,15 @@ public function store(Request $request)
         'totallinea' => $request->cantidad * $producto->precio,
     ]);
 
-    // 2️⃣ RECARGAR la factura desde BD
+    // 2️ RECARGAR la factura desde BD
     $factura = Factura::with('detallefactura')->findOrFail($request->idfactura);
 
-    // 3️⃣ Calcular desde LOS DETALLES REALES
+    // 3️ Calcular desde LOS DETALLES REALES
     $subtotal = $factura->detallefactura->sum('totallinea');
     $impuestos = $subtotal * 0.19;
     $total = $subtotal + $impuestos;
 
-    // 4️⃣ Actualizar factura
+    // 4️ Actualizar factura
     $factura->update([
         'subtotal' => $subtotal,
         'impuestos' => $impuestos,

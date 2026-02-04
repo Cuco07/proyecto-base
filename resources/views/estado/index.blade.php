@@ -53,13 +53,13 @@
                         @foreach ($estados as $estado)
                             <tr>
                                 <td>{{$estado->id}}</td>
-                                <td>{{$estado->estado}}
-                                     @if($estado->activo)
-                                       <span class="badge bg-success">Activo</span>
-                                     @else
-                                      <span class="badge bg-danger">Inactivo</span>
-                                     @endif
-                                </td>
+                                <td>
+    @if($estado->estado)
+        <span class="badge bg-success">Activo</span>
+    @else
+        <span class="badge bg-danger">Inactivo</span>
+    @endif
+</td>
                                 <td>{{$estado->descripcion}}</td>
                                 <td>
                                     <a data-bs-toggle="tooltip" title="Editar" href="{{route('estado.edit', $estado->id)}}"

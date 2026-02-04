@@ -44,6 +44,12 @@ class Producto extends Model
         return $this->belongsTo(Impuesto::class, 'impuesto_id');
     }
 
+    public function estado()
+    {
+    return $this->belongsTo(Estado::class, 'idestado');
+    }
+
+
     // ================= ATRIBUTOS CALCULADOS =================
 
     // Valor del IVA (calculado desde precio base)

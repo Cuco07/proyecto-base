@@ -24,16 +24,17 @@ class FacturaPdfController extends Controller
         $impuestos = 0;
 
         foreach ($factura->detallefacturas as $d) {
-            $linea = $d->cantidad * $d->precio;
+            $linea = $d->cantidad * $d->preciounitario;
             $subtotal += $linea;
 
-            $iva = $d->producto->impuesto->porcentaje ?? 0;
-            $impuestos += $linea * $iva / 100;
+           $porcentaje = $d->producto->impuesto->porcentaje ?? 0;
+           $impuestos += $linea * ($porcentaje / 100);
         }
 
         $total = $subtotal + $impuestos;
 
-        $pdf = PDF::loadView('factura.pdf', compact('factura'));
+        $pdf = PDF::loadView('factura.pdf', compact('factura',
+            'factura','subtotal','impuestos','total'));
 
         return $pdf->stream('factura_' . $factura->id . '.pdf');
     }

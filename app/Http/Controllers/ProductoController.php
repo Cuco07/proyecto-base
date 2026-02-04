@@ -27,7 +27,7 @@ class ProductoController extends Controller
     {
         $categorias = categoria::all();
         $marcas = marca::all();
-         $impuestos = Impuesto::all();
+        $impuestos = Impuesto::all();
 
         return view('producto.crear', compact('categorias', 'marcas','impuestos'));
     }

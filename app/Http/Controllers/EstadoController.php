@@ -29,19 +29,21 @@ class EstadoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-   
-{
+      public function store(Request $request)
+    {
     $request->validate([
         'descripcion' => 'required|string|max:255',
+        'estado' => 'required|boolean',
     ]);
 
-    estado::create([
+    Estado::create([
         'descripcion' => $request->descripcion,
+        'estado' => $request->estado,
     ]);
 
-    return redirect()->route('estado.index')->with('success', 'Estado creado correctamente.');
-}
+    return redirect()->route('estado.index')
+        ->with('success', 'Estado creado correctamente');
+    }
     /**
      * Display the specified resource.
      */
@@ -53,10 +55,11 @@ class EstadoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+   public function edit(string $id)
     {
-        $estados = estado::find($id);
-        return view('estado.editar', compact('estados') );
+    $estado = Estado::findOrFail($id);
+
+    return view('estado.editar', compact('estado'));
     }
 
     /**
@@ -64,7 +67,11 @@ class EstadoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        estado::find($id)->update($request->all());
+       $estado = Estado::findOrFail($id);
+        $estado->descripcion = $request->descripcion;
+        $estado->activo = $request->has('activo') ? 1 : 0;
+        $estado->save();
+
         return redirect()->route('estado.index')->with('succes','Estado Actualizado Correctamente');
  
     }
